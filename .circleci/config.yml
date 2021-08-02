@@ -15,8 +15,8 @@ jobs:
           name: Set APPLICATION KEY
           command: grep -l 'YOUR_APPLICATION_KEY' $(find `pwd` -name "MainActivity.java") | xargs sed -i.bak -e "s/YOUR_APPLICATION_KEY/"${APPLICATION_KEY:0:-5}"/g"
       - run:
-          name: Set CLIENT KEY
-          command: grep -l 'YOUR_CLIENT_KEY' $(find `pwd` -name "MainActivity.java") | xargs sed -i.bak -e "s/YOUR_CLIENT_KEY/"${CLIENT_KEY:0:-5}"/g"
+          name: make google-services.json
+          command: cd app && json="${JSON:0:-5}" && echo -e $json > google-services.json && cat google-services.json
       - run:
           name: Download dependencies
           command: ./gradlew androidDependencies
@@ -25,8 +25,8 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: add Amazon Device Farm setting
-          command: cd app && (cat build.gradle | sed 's/\/\*//'| sed 's/\*\///') > tmp_build.gradle && cat tmp_build.gradle > build.gradle && rm tmp_build.gradle
+          name: print
+          command: cat $(find `pwd` -name "MainActivity.java")
       - run:
           name: Run Tests
           command: ./gradlew lint test
