@@ -162,8 +162,8 @@
 * ニフクラ mobile backend の[ドキュメント（クイックスタート）](https://mbaas.nifcloud.com/doc/current/introduction/quickstart_android.html)をご用意していますので、ご活用ください
 
 #### ロジック
-* `activity_main.xml`でデザインを作成し、`MainActivity.java`にロジックを書いています
-*  installationクラス(端末情報)が保存される処理は以下のように記述されます
+* `activity_main.xml`でデザインを作成し、`MainActivity.java`にロジックを書いています。
+*  installationクラス(端末情報)が保存される処理は以下のように記述されます。
 
 ```java
 protected void onCreate(Bundle savedInstanceState) {
